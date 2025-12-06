@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarritoServiceImp implements CarritoService {
@@ -23,7 +24,13 @@ public class CarritoServiceImp implements CarritoService {
 
     @Override
     public Carrito crearCarrito(Carrito carrito) {
-        return carritoRepository.save(carrito);
+        Integer id = Math.toIntExact(carrito.getTendero().getIdUsuario());
+        Optional<Carrito> carritoE = carritoRepository.findByTendero_IdUsuario(id);
+        if(carritoE.isPresent()){
+            return carritoE.get();
+        }else {
+            return carritoRepository.save(carrito);
+        }
     }
 
     @Override
