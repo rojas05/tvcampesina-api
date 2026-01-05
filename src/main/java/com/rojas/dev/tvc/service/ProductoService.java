@@ -13,7 +13,7 @@ public interface ProductoService {
 
     ResponseEntity<?> obtenerProductoPorId(Integer idProducto);
 
-    ResponseEntity<?> delete(Integer idProducto);
-
     ResponseEntity<?> actualizarProducto(Integer idProducto, Producto productoActualizado);
+
+    ResponseEntity<?> delete(Integer idProducto);
 }
