@@ -50,6 +50,16 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
+    public ResponseEntity<?> delete(Integer idProducto) {
+        try {
+            productoRepository.deleteById(idProducto);
+            return ResponseEntity.ok("ELIMINADO");
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
+        }
+    }
+
+    @Override
     public ResponseEntity<?> actualizarProducto(Integer idProducto, Producto productoActualizado) {
         try {
             Optional<Producto> productoExistente = productoRepository.findById(idProducto);

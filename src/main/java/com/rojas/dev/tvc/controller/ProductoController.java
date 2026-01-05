@@ -38,4 +38,10 @@ public class ProductoController {
     public ResponseEntity<?> actualizarProducto(@PathVariable Integer idProducto, @RequestBody Producto producto) {
         return productoService.actualizarProducto(idProducto, producto);
     }
+
+    // 3. Obtener producto por ID
+    @DeleteMapping("/{idProducto}")
+    public ResponseEntity<?> eliminar(@PathVariable Integer idProducto) {
+        return productoService.delete(idProducto);
+    }
 }
