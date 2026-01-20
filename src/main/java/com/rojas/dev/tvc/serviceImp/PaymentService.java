@@ -118,7 +118,7 @@ public class PaymentService {
                 "account_number", comerciante.getAccountNumber(),
                 "account_owner_name", comerciante.getAccountOwnerName(),
                 "account_owner_document", comerciante.getAccountDocument(),
-                "account_owner_document_type", comerciante.getLegalIdType().toString(),
+                "account_owner_document_type", "CC",
                 "account_type", comerciante.getAccountType() == null ? "checking" : comerciante.getAccountType()
         );
 
