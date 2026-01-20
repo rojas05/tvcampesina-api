@@ -53,7 +53,7 @@ public class WompiPayoutProvider {
 
         // Construir transacción de destino (comerciante/distribuidor)
         Map<String, Object> transaction = new HashMap<>();
-        transaction.put("legalIdType", merchantInfo.get("account_owner_document_type"));
+        transaction.put("legalIdType", "CC");
         transaction.put("legalId", merchantInfo.get("account_owner_document"));
         transaction.put("bankId", merchantInfo.get("bank_code")); // UUID del banco
         transaction.put("accountType", merchantInfo.getOrDefault("accountType", "AHORROS"));
