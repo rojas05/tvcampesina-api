@@ -1,6 +1,7 @@
 package com.rojas.dev.tvc.serviceImp;
 
 import com.rojas.dev.tvc.Repository.ComercianteRepository;
+import com.rojas.dev.tvc.Repository.PedidoRepository;
 import com.rojas.dev.tvc.Repository.ProductoRepository;
 import com.rojas.dev.tvc.service.ImgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class ImgServiceImp implements ImgService {
     @Autowired
     ProductoRepository productoRepository;
 
+    @Autowired
+    PedidoRepository pedidoRepository;
+
     private static final String UPLOAD_DIR = "uploads/";
 
     @Override
@@ -40,12 +44,14 @@ public class ImgServiceImp implements ImgService {
             Files.write(path, imagen.getBytes());
 
             // Retorna la URL pública (ajústala si estás en producción)
-            String url = "http://192.168.0.109:8081/tvc/api/v1/img/get/" + nombreArchivo;
+            String url = "https://api.tvctiendacampesina.app/tvc/api/v1/img/get/" + nombreArchivo;
 
             if (Objects.equals(type, "comerciante")) {
                 comercianteRepository.actualizarImagen(id,url);
             } else if (Objects.equals(type, "producto")) {
                 productoRepository.actualizarImagen(id,url);
+            } else if (Objects.equals(type, "pago")) {
+                pedidoRepository.actualizarImagen(id,url);
             }
 
             return ResponseEntity.ok(url);

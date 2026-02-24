@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: tvc
+  datasource:
+    url: jdbc:mariadb://localhost:3306/tvc
+    username: root
+    password: 1234567890
+    driver-class-name: org.mariadb.jdbc.Driver
+  mvc:
+    static-path-pattern: /imagenes/**
+  web:
+    resources:
+      static-locations: file:uploads/
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      open-in-view: false
+
+server:
+  port: 8081
+  address: 0.0.0.0
+  servlet:
+    context-path: /tvc/api/v1
+
+wompi:
+  # Llave privada: para crear links de pago desde el backend
+  privateKey: prv_test_TMxp3emOWIFsU3eN8E65XPH7ZUc3K74e
+
+  # Llave pública: para el frontend / app móvil
+  publicKey: pub_test_3wMcfmiQscauyVvBR52eYHI99Y3ZDzcq
+
+  # Endpoint de la API de Wompi
+  baseUrl: https://sandbox.wompi.co/v1
+
+  # Endpoint para checkout (links de pago)
+  checkoutBase: "https://checkout.wompi.co/l"
+
+  evpentSecret: test_events_NggeVSr3CBi9jUE8XHKy9I3lbFBXF329
+
+  payouts:
+    apiKey: o1tklb9yCZ66Z7AKZgjZ53Mw88a42TD53USbJksT
+    baseUrl: https://api.sandbox.payouts.wompi.co/v1
+    userPrincipalId: 893e676d-8a0e-4280-9594-7f9a7370b015
+    clientSecret: prod_events_03f675889e8b970fbfe41289ae2bf511
+    accountId: "WOMPI_ACCOUNT"
+
+

@@ -47,6 +47,5 @@ public class Comerciante {
     private String accountType;         // "checking", "savings" etc
     private String accountOwnerName;    // nombre del titular
     private String accountDocument;     // documento del titular
-    @Enumerated(EnumType.STRING)
-    private LegalIdType legalIdType;    // typo de documento del titular
+    private String legalIdType;    // typo de documento del titular
 }

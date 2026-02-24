@@ -37,4 +37,8 @@ public class Usuario {
     private String departamento;
 
     private String fechaCreacion;
+
+    private String state;
+
+    private String vereda;
 }

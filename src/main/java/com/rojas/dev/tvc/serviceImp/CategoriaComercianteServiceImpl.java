@@ -2,6 +2,7 @@ package com.rojas.dev.tvc.serviceImp;
 
 
 import com.rojas.dev.tvc.Repository.CategoriaComercianteRepository;
+import com.rojas.dev.tvc.dto.UpdateComercianteRequest;
 import com.rojas.dev.tvc.entity.CategoriaComerciante;
 import com.rojas.dev.tvc.service.CategoriaComercianteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,6 @@ public class CategoriaComercianteServiceImpl implements CategoriaComercianteServ
     public List<CategoriaComerciante> listarTodas() {
         return repository.findAll();
     }
+
 }
 

@@ -21,12 +21,10 @@ public class WompiWebhookController {
 
         String status = (String) tx.get("status");
         String linkId = (String) tx.get("payment_link_id");
-        String txId = (String) tx.get("id");
-        Integer amountInCents = (Integer) tx.get("amount_in_cents");
 
         if ("APPROVED".equals(status)) {
             paymentService.markPaymentLinkApproved(linkId);
-            paymentService.processWompiTransaction(txId, status, amountInCents, linkId, payload.toString());
+            //paymentService.processWompiTransaction(txId, status, amountInCents, linkId, payload.toString());
         }
 
         return ResponseEntity.ok("Pago procesado correctamente");

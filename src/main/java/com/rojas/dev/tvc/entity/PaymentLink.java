@@ -1,6 +1,7 @@
 package com.rojas.dev.tvc.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
 
 @Entity
@@ -22,7 +23,5 @@ public class PaymentLink {
     private String rawResponse;
     //private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    private Integer usuario;
 }

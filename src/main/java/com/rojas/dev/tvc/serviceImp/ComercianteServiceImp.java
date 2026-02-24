@@ -1,6 +1,7 @@
 package com.rojas.dev.tvc.serviceImp;
 
 import com.rojas.dev.tvc.Repository.ComercianteRepository;
+import com.rojas.dev.tvc.dto.UpdateComercianteRequest;
 import com.rojas.dev.tvc.entity.Comerciante;
 import com.rojas.dev.tvc.enumClass.EstadoComerciante;
 import com.rojas.dev.tvc.service.ComercianteService;
@@ -100,6 +101,25 @@ public class ComercianteServiceImp implements ComercianteService {
     public boolean actualizarEstado(Integer idComerciante, EstadoComerciante nuevoEstado) {
         int rows = comercianteRepository.actualizarEstado(idComerciante, nuevoEstado);
         return rows > 0;
+    }
+
+    @Override
+    public void actualizarComerciante(Integer idComerciante, UpdateComercianteRequest request) {
+
+        Comerciante comerciante = comercianteRepository.findById(idComerciante)
+                .orElseThrow(() -> new RuntimeException("Comerciante no encontrado"));
+
+        comerciante.setNombreNegocio(request.getNombreNegocio());
+        comerciante.setDireccion(request.getDireccion());
+        comerciante.setTelefonoContacto(request.getTelefonoContacto());
+        comerciante.setPercent(request.getPercent());
+        comerciante.setBankCode(request.getBankCode());
+        comerciante.setAccountNumber(request.getAccountNumber());
+        comerciante.setAccountType(request.getAccountType());
+        comerciante.setAccountOwnerName(request.getAccountOwnerName());
+        comerciante.setAccountDocument(request.getAccountDocument());
+
+        comercianteRepository.save(comerciante);
     }
 }
 

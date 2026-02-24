@@ -1,6 +1,7 @@
 package com.rojas.dev.tvc.serviceImp;
 
 import com.rojas.dev.tvc.Repository.UsuarioRepository;
+import com.rojas.dev.tvc.dto.UpdateUserRequest;
 import com.rojas.dev.tvc.entity.Usuario;
 import com.rojas.dev.tvc.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,29 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
     }
 
+    @Override
+    public void actualizarUsuario(Integer idUsuario, UpdateUserRequest request) {
+
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        usuario.setNombre(request.getNombre());
+        usuario.setIdentificacion(request.getIdentificacion());
+        usuario.setTelefono(request.getTelefono());
+        usuario.setMunicipio(request.getMunicipio());
+        usuario.setDepartamento(request.getDepartamento());
+
+        usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public void actualizarState(Integer idUsuario, String state) {
+
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        usuario.setState(state);
+
+        usuarioRepository.save(usuario);
+    }
 }

@@ -13,5 +13,6 @@ public class RegisterRequest {
     private TipoUsuario tipoUsuario;
     private String municipio;
     private String departamento;
+    private String vereda;
 }
 

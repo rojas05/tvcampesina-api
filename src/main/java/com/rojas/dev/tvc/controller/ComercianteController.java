@@ -1,11 +1,14 @@
 package com.rojas.dev.tvc.controller;
 
+import com.rojas.dev.tvc.dto.UpdateComercianteRequest;
 import com.rojas.dev.tvc.entity.Comerciante;
 import com.rojas.dev.tvc.enumClass.EstadoComerciante;
 import com.rojas.dev.tvc.service.ComercianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/comerciantes")
@@ -67,5 +70,18 @@ public class ComercianteController {
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPorId(@PathVariable Integer id) {
         return comercianteService.obtenerPorId(id);
+    }
+
+    @PutMapping("/update/{idComerciante}")
+    public ResponseEntity<?> actualizarComerciante(
+            @PathVariable Integer idComerciante,
+            @RequestBody UpdateComercianteRequest request
+    ) {
+
+        comercianteService.actualizarComerciante(idComerciante, request);
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Comerciante actualizado correctamente"
+        ));
     }
 }

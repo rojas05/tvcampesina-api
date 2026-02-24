@@ -1,5 +1,6 @@
 package com.rojas.dev.tvc.service;
 
+import com.rojas.dev.tvc.dto.UpdateComercianteRequest;
 import com.rojas.dev.tvc.entity.CategoriaComerciante;
 
 import java.util.List;

@@ -51,17 +51,18 @@ public class PaymentService {
         paymentLinkRepository.save(link);
 
         // 3️⃣ Buscar el Pedido asociado
-        Pedido pedido = pedidoRepository.findById(link.getPedido().getIdPedido())
+        Usuario usuario = usuarioRepository.findById(link.getUsuario())
                 .orElseThrow(() -> new RuntimeException("Pedido no encontrado para el PaymentLink: " + paymentLinkId));
 
         // 4️⃣ Actualizar estado del pedido
-        pedido.setIdEstadoPedido(true); // o usa un enum si tienes uno (Ej: EstadoPedido.PAGADO)
-        pedidoRepository.save(pedido);
+        usuario.setState("Activo"); // o usa un enum si tienes uno (Ej: EstadoPedido.PAGADO)
+        usuarioRepository.save(usuario);
 
         //processWompiTransaction(transactionId, "APPROVED", amountInCents, paymentLinkId, rawBody);
         System.out.println("✅ PaymentLink " + paymentLinkId + " marcado como APROBADO y pedido actualizado.");
     }
 
+    /*
     @Transactional
     public void processWompiTransaction(String txId, String status, Integer amountCents, String paymentLinkId, String rawBody) {
         // Idempotencia: si ya se procesó transactionId -> salir
@@ -152,5 +153,5 @@ public class PaymentService {
             payoutRepository.save(payout);
             // opcional: enviar notificación, encolar para retry
         }
-    }
+    }*/
 }

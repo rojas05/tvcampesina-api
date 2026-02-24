@@ -22,31 +22,24 @@ public class PagoController {
     @Autowired
     PagoService pagoService;
 
-    @PostMapping("/create-link/{pedidoId}")
-    public ResponseEntity<?> createLink(@PathVariable Integer pedidoId) {
-        Pedido pedido = pedidoRepository.findById(pedidoId)
-                .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
-
-        var porcentaje = pedido.getItems().get(0).getProducto().getComerciante().getPercent();
-        var monto = pedido.getTotal();
-        var comicion = monto * 0.01;
-        var montoConComicion = monto + comicion - porcentaje;
-
+    @PostMapping("/create-link/{pedidoId}/{monto}")
+    public ResponseEntity<?> createLink(@PathVariable Integer pedidoId, @PathVariable Integer monto) {
         var result = wompiProvider.createPaymentLink(
-                (long) (montoConComicion * 100L), // convertir a centavos
-                "PED-" + pedido.getIdPedido(),
+                (monto * 100L), // convertir a centavos
+                "USER-" + pedidoId,
                 "app://tvccomercio/payments/callback"
         );
 
         var link = com.rojas.dev.tvc.entity.PaymentLink.builder()
-                .pedido(pedido)
-                .referencia("PED-" + pedido.getIdPedido())
+                .usuario(pedidoId)
+                .referencia("USER-" + pedidoId)
                 .paymentLinkId(result.getPaymentLinkId())
                 .checkoutUrl(result.getCheckoutUrl())
                 .rawResponse(result.getRawResponse())
                 .build();
 
         paymentLinkRepository.save(link);
+        System.out.println(link);
         return ResponseEntity.ok(result);
     }
 

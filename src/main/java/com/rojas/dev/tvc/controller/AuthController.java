@@ -51,6 +51,7 @@ public class AuthController {
                 .tipoUsuario(request.getTipoUsuario())
                 .municipio(request.getMunicipio())
                 .departamento(request.getDepartamento())
+                .vereda(request.getVereda())
                 .fechaCreacion(java.time.LocalDate.now().toString())
                 .build();
 

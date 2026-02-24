@@ -1,5 +1,6 @@
 package com.rojas.dev.tvc.service;
 
+import com.rojas.dev.tvc.dto.UpdateComercianteRequest;
 import com.rojas.dev.tvc.entity.Comerciante;
 import com.rojas.dev.tvc.enumClass.EstadoComerciante;
 import org.springframework.http.ResponseEntity;
@@ -21,4 +22,6 @@ public interface ComercianteService {
     ResponseEntity<?> actualizarComerciante(Integer idComerciante, Comerciante datosActualizados);
 
     boolean actualizarEstado(Integer idComerciante, EstadoComerciante nuevoEstado);
+
+    void actualizarComerciante(Integer idComerciante, UpdateComercianteRequest request);
 }

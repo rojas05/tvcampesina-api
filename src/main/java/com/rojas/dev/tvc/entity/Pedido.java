@@ -36,6 +36,8 @@ public class Pedido {
 
     private String documento;
 
+    private String pago;
+
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> items;
 }
