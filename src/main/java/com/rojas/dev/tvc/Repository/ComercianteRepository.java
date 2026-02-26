@@ -17,7 +17,7 @@ public interface ComercianteRepository extends JpaRepository<Comerciante, Intege
 
     @Query("SELECT c FROM Comerciante c " +
             "WHERE LOWER(c.categoria.nombre) LIKE LOWER(CONCAT('%', :nombreCategoria, '%')) " +
-            "AND LOWER(c.usuario.municipio) = LOWER(:municipio) AND c.estado LIKE :state")
+            "AND LOWER(c.usuario.municipio) = LOWER(:municipio) OR LOWER(c.direccion) = LOWER(:municipio) AND c.estado LIKE :state")
     List<Comerciante> findByCategoriaNombreAndMunicipio(String nombreCategoria, String municipio, EstadoComerciante state);
 
     @Query("SELECT c FROM Comerciante c " +
