@@ -38,7 +38,7 @@ public class ImgServiceImp implements ImgService {
     @Override
     public ResponseEntity<?> subirImagen(MultipartFile imagen, Integer id, String type) {
         try {
-            String nombreArchivo = UUID.randomUUID() + "_" + imagen.getOriginalFilename();
+            String nombreArchivo = id+type;
             Path path = Paths.get(UPLOAD_DIR + nombreArchivo);
             Files.createDirectories(path.getParent());
             Files.write(path, imagen.getBytes());
