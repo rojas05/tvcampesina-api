@@ -53,6 +53,7 @@ public class AuthController {
                 .departamento(request.getDepartamento())
                 .vereda(request.getVereda())
                 .fechaCreacion(java.time.LocalDate.now().toString())
+                .state("Activo")
                 .build();
 
         Usuario newUser = usuarioRepository.save(usuario);

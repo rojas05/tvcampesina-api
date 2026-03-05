@@ -42,6 +42,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setTelefono(request.getTelefono());
         usuario.setMunicipio(request.getMunicipio());
         usuario.setDepartamento(request.getDepartamento());
+        usuario.setVereda(request.getVereda());
 
         usuarioRepository.save(usuario);
     }

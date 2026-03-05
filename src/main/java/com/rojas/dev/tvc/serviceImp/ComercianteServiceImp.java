@@ -118,6 +118,7 @@ public class ComercianteServiceImp implements ComercianteService {
         comerciante.setAccountType(request.getAccountType());
         comerciante.setAccountOwnerName(request.getAccountOwnerName());
         comerciante.setAccountDocument(request.getAccountDocument());
+        comerciante.setEstado(EstadoComerciante.INACTIVO);
 
         comercianteRepository.save(comerciante);
     }

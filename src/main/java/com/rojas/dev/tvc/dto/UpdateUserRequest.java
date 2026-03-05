@@ -9,4 +9,5 @@ public class UpdateUserRequest {
     private String telefono;
     private String municipio;
     private String departamento;
+    private String vereda;
 }
